@@ -4,7 +4,12 @@ import { Second } from "./components/Second";
 import "./App.css";
 
 function App() {
-  return <SplitScreen Left={<First />} Right={<Second />} />;
+  return (
+    <SplitScreen>
+      <First />
+      <Second />
+    </SplitScreen>
+  );
 }
 
 export default App;
