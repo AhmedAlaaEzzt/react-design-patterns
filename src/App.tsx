@@ -1,11 +1,12 @@
 import { CurrentUserLoader } from "./components/CurrentUserLoader";
+import { UserInfo } from "./components/UserInfo";
 import "./App.css";
 
 function App() {
   return (
     <div>
       <CurrentUserLoader>
-        <div>Nothing for now..</div>
+        <UserInfo />
       </CurrentUserLoader>
     </div>
   );

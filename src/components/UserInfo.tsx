@@ -1,18 +1,20 @@
 import { IUser } from "../interfaces/IUser";
 
 type TUserInfoProps = {
-  user: IUser;
+  user?: IUser;
 };
 
 export function UserInfo(props: TUserInfoProps) {
-  const {
-    user,
-    user: { name, age, country, books },
-  } = props;
+  const { user } = props;
+
+  if (!user) {
+    return <p>Loading...</p>;
+  }
+
+  const { name, age, country, books } = user;
 
   return (
     <>
-      {!user && <p>Loading...</p>}
       {user && (
         <div>
           <h1>{name}</h1>
