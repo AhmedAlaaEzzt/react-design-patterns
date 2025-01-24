@@ -1,7 +1,6 @@
-export interface IAuthor {
-  id: string;
+export interface IUser {
   name: string;
-  age: number;
+  age: string;
   country: string;
   books: string[];
 }
