@@ -1,20 +1,23 @@
 import { IBook } from "../interfaces/IBook";
 
 type TBookInfoProps = {
-  book: IBook;
+  book?: IBook;
 };
 
 export function BookInfo(props: TBookInfoProps) {
-  const {
-    book,
-    book: { name, price, title, pages },
-  } = props;
+  const { book } = props;
+
+  if (!book) {
+    return <p>Loading...</p>;
+  }
+
+  const { name, price, title, pages } = book;
 
   return (
     <>
       {!book && <p>Loading...</p>}
       {book && (
-        <div>
+        <div className="border border-gray-300 rounded-md p-4">
           <h3>{name}</h3>
           <p>${price}</p>
           <h3>Title: {title}</h3>
