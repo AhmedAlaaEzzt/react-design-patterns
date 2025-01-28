@@ -16,7 +16,7 @@ export function UserInfo(props: TUserInfoProps) {
   return (
     <>
       {user && (
-        <div>
+        <div className="border border-gray-300 rounded-md p-4">
           <h1>{name}</h1>
           <p>Age: {age} years</p>
           <p>Country: {country}</p>
