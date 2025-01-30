@@ -1,19 +1,23 @@
-import { UserLoader } from "./components/UserLoader";
+import { ResourceLoader } from "./components/ResourceLoader";
 import { UserInfo } from "./components/UserInfo";
+import { BookInfo } from "./components/BookInfo";
 import "./App.css";
 
 function App() {
   return (
     <div>
-      <UserLoader id="1">
+      <ResourceLoader
+        resourceUrl="http://localhost:9090/users/1"
+        resourceName="user"
+      >
         <UserInfo />
-      </UserLoader>
-      <UserLoader id="2">
-        <UserInfo />
-      </UserLoader>
-      <UserLoader id="3">
-        <UserInfo />
-      </UserLoader>
+      </ResourceLoader>
+      <ResourceLoader
+        resourceUrl="http://localhost:9090/books/1"
+        resourceName="book"
+      >
+        <BookInfo />
+      </ResourceLoader>
     </div>
   );
 }
