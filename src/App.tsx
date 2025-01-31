@@ -1,23 +1,34 @@
-import { ResourceLoader } from "./components/ResourceLoader";
+import axios from "axios";
 import { UserInfo } from "./components/UserInfo";
-import { BookInfo } from "./components/BookInfo";
+import { DataSource } from "./components/DataSource";
 import "./App.css";
+import { IUser } from "./interfaces/IUser";
 
 function App() {
+  const getDataFromServer = async <T,>(url: string): Promise<T> => {
+    const response = await axios.get<T>(url);
+    return response.data;
+  };
+
   return (
     <div>
-      <ResourceLoader
-        resourceUrl="http://localhost:9090/users/1"
+      <DataSource
+        getData={() =>
+          getDataFromServer<IUser>("http://localhost:9090/users/1")
+        }
         resourceName="user"
       >
         <UserInfo />
-      </ResourceLoader>
-      <ResourceLoader
-        resourceUrl="http://localhost:9090/books/1"
-        resourceName="book"
+      </DataSource>
+      <br />
+      <DataSource
+        getData={() =>
+          getDataFromServer<IUser>("http://localhost:9090/users/2")
+        }
+        resourceName="user"
       >
-        <BookInfo />
-      </ResourceLoader>
+        <UserInfo />
+      </DataSource>
     </div>
   );
 }
