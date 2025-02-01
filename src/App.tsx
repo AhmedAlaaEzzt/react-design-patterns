@@ -1,34 +1,36 @@
 import axios from "axios";
 import { UserInfo } from "./components/UserInfo";
-import { DataSource } from "./components/DataSource";
+import { DataSourceWithRender } from "./components/DataSourceWithRender";
 import "./App.css";
 import { IUser } from "./interfaces/IUser";
+import { IBook } from "./interfaces/IBook";
+import { BookInfo } from "./components/BookInfo";
 
 function App() {
   const getDataFromServer = async <T,>(url: string): Promise<T> => {
     const response = await axios.get<T>(url);
     return response.data;
   };
-
+  // render prop pattern
   return (
     <div>
-      <DataSource
+      <DataSourceWithRender<IUser>
         getData={() =>
           getDataFromServer<IUser>("http://localhost:9090/users/1")
         }
-        resourceName="user"
-      >
-        <UserInfo />
-      </DataSource>
+        renderItem={(user) => <UserInfo user={user} />}
+      />
       <br />
-      <DataSource
+
+      <DataSourceWithRender<IBook>
         getData={() =>
-          getDataFromServer<IUser>("http://localhost:9090/users/2")
+          getDataFromServer<IBook>("http://localhost:9090/books/1")
         }
-        resourceName="user"
-      >
-        <UserInfo />
-      </DataSource>
+        renderItem={(book) => <BookInfo book={book} />}
+      />
+
+
+
     </div>
   );
 }
